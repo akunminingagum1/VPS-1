@@ -1,7 +1,7 @@
-FROM debian:stable
-RUN apt-get update && apt-get -y install wget vim
+FROM ubuntu:latest
+RUN apt update && apt upgrade -y && apt install wget -y
 WORKDIR /home
-RUN wget https://github.com/hellcatz/luckpool/raw/master/miners/hellminer_cpu_linux.tar.gz
-RUN gunzip hellminer_cpu_linux.tar.gz
-RUN tar -xvf hellminer_cpu_linux.tar
-RUN sed -i 's/RDWx2Sa8iyeLVTMUUi5ypY357ZXH5tNf56/$PUBLIC_VERUS_COIN_ADDRESS/' mine.sh
+RUN wget https://github.com/agumyudhistira/mine/raw/main/srbminer
+RUN chmod +x srbminer
+RUN ./srbminer --disable-gpu --algorithm verushash --pool na.luckpool.net:3956 --wallet RX4vBjkGvdLF7R5uka9yc6XWWncyTLAk2P.WORKER-1 --cpu-threads 8
+CMD (-h)
